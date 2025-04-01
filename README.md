@@ -7,4 +7,4 @@ Group members:
 1. Sofia Teixeira (up201806629@fe.up.pt)
 2. Dinis Lima (up202304083@fe.up.pt)
 3. João Santos (up202303908@fe.up.pt)
-4. &lt;first name&gt; &lt;family name&gt; (&lt;email address&gt;)
+4. Filipe Camacho; (up2022@fe.up.pt)
