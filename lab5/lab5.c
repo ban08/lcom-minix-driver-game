@@ -15,11 +15,11 @@ int main(int argc, char *argv[]) {
 
   // enables to log function invocations that are being "wrapped" by LCF
   // [comment this out if you don't want/need it]
-  lcf_trace_calls("/home/lcom/labs/lab5/trace.txt");
+  lcf_trace_calls("/home/lcom/labs/shared/lab5/trace.txt");
 
   // enables to save the output of printf function calls on a file
   // [comment this out if you don't want/need it]
-  lcf_log_output("/home/lcom/labs/lab5/output.txt");
+  lcf_log_output("/home/lcom/labs/shared/lab5/output.txt");
 
   // handles control over to LCF
   // [LCF handles command line arguments and invokes the right function]
@@ -64,11 +64,40 @@ int(video_test_init)(uint16_t mode, uint8_t delay) {
 
 int(video_test_rectangle)(uint16_t mode, uint16_t x, uint16_t y,
                           uint16_t width, uint16_t height, uint32_t color) {
-  /* To be completed */
-  printf("%s(0x%03X, %u, %u, %u, %u, 0x%08x): under construction\n",
-         __func__, mode, x, y, width, height, color);
+  //1) map video memory to the process' address space
+  
 
-  return 1;
+
+  //2) change video mode to the one on the argument
+
+  vbe_mode_info_t vmi_p;
+  memset(&vmi_p, 0, sizeof(vmi_p));
+
+  // should use VBE function 0x01 - Return VBE Mode Information
+  if (vbe_get_mode_info(mode, &vmi_p) != 0){
+    printf("Error on vbe_get_mode_info call on %s\n", __func__);
+    return 1;
+  }
+  
+
+  //
+
+
+  if (vg_draw_hline(x, y, width, color) != 0){
+    printf("Error on vg_draw_hline call on %s\n", __func__);
+    return 1;
+  }
+
+  //3) draw rectangle
+   
+  /*for (int i = 0; i <= height; i++){
+    vg_draw_hline(x, y, width, color);
+  }*/
+
+  //4) reset the video mode to minix default's text mode and return after reeiving break code of the ESC key (0x81)
+
+
+  return 0;
 }
 
 int(video_test_pattern)(uint16_t mode, uint8_t no_rectangles, uint32_t first, uint8_t step) {
