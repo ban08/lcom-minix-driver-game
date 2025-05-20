@@ -58,6 +58,9 @@ int (keyboard_restore)() {
 }
 
 
+/*
+
+nao vou usar para este lab, está a dar problemas
 
 int util_sys_inb_counter(int port, uint8_t *value) 
 {
@@ -66,3 +69,4 @@ int util_sys_inb_counter(int port, uint8_t *value)
     return util_sys_inb(port, value);
 }
 
+*/

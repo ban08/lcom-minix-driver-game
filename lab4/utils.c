@@ -49,3 +49,13 @@ int (util_sys_inb)(int port, uint8_t *value) {
   return r;
 }
 
+
+/*
+int util_sys_inb_counter(int port, uint8_t *value) 
+{
+    counter_kb_controller = counter_kb_controller + 1; 
+    
+    return util_sys_inb(port, value);
+}
+*/
+

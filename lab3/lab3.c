@@ -6,16 +6,19 @@
 #include <stdint.h>
 #include "keyboard.h"
 #include "kb_controller.c"
-
+#include "timer.c"
 #include "i8254.h"
 #include "i8042.h"
 
-#include "timer.c"
 
 
 extern uint8_t scan_code;
+
 extern uint32_t counter_kb_controller;
-extern uint32_t counter_timer;
+
+extern uint32_t cnt;
+
+
 
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
@@ -23,11 +26,11 @@ int main(int argc, char *argv[]) {
 
   // enables to log function invocations that are being "wrapped" by LCF
   // [comment this out if you don't want/need it]
-  lcf_trace_calls("/home/lcom/labs/lab3/trace.txt");
+  //lcf_trace_calls("/home/lcom/labs/lab3/trace.txt");
 
   // enables to save the output of printf function calls on a file
   // [comment this out if you don't want/need it]
-  lcf_log_output("/home/lcom/labs/lab3/output.txt");
+  //lcf_log_output("/home/lcom/labs/lab3/output.txt");
 
   // handles control over to LCF
   // [LCF handles command line arguments and invokes the right function]
@@ -74,7 +77,7 @@ int(kbd_test_scan)() {
 
             kbc_ih();
 
-            bool is_make = (scan_code & MAKE_CODE) == 0;
+            bool is_make = ((scan_code & MAKE_CODE) == 0);
 
             uint8_t size;
 
@@ -108,7 +111,7 @@ int(kbd_test_poll)() {
   while (scan_code != BREAK_CODE_ESCAPE) 
   { //como referido na documentation do lab3, "The kbd_test_scan() function should return when the user releases the Esc key"
 
-    if (read_KBC_output(KBC_OUT_COMMAND, &scan_code, 0) == 0) 
+    if (readKBControlleroutput(KBC_OUT_COMMAND, &scan_code, 0) == 0) 
     {
 
       bool is_make_code = (scan_code & MAKE_CODE) == 0;
@@ -136,7 +139,10 @@ int(kbd_test_poll)() {
 
 int(kbd_test_timed_scan)(uint8_t n) {
   message message;
+
   int ipc_stat;
+
+
   uint8_t irq_set_timer, irq_set_kb_controller;
 
 
@@ -157,7 +163,7 @@ int(kbd_test_timed_scan)(uint8_t n) {
 
     }
 
-    if(is_ipc_notify(ipc_stat) && _ENDPOINT_P(msg.m_source) == HARDWARE) 
+    if(is_ipc_notify(ipc_stat) && _ENDPOINT_P(message.m_source) == HARDWARE) 
     {
       if (message.m_notify.interrupts & irq_set_kb_controller) 
       {
@@ -167,21 +173,23 @@ int(kbd_test_timed_scan)(uint8_t n) {
 
         uint8_t size;
         
-        if (scan_code == TWO_BYTES_MASK) {
+        if (scan_code == TWO_BYTES_MASK) 
+        {
           size = 2;
-        } else {
+        } else 
+        {
           size = 1;
         }
         
         kbd_print_scancode(is_make, size, &scan_code);
                 
         seconds = 0;
-        counter_timer = 0;
+        cnt = 0;
       }
       if (message.m_notify.interrupts & irq_set_timer) 
       {
         timer_int_handler();
-        if (counter_timer % 60 == 0) 
+        if (cnt % 60 == 0) 
         {
           seconds++;
         }

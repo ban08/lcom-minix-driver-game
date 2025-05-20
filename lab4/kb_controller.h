@@ -5,7 +5,7 @@
 #include <lcom/lcf.h>
 
 #include "i8042.h"
-//#include "keyboard.c"
+//#include "keyboard.h"
 
 int (readKBControllerstat)(uint8_t* status);
 

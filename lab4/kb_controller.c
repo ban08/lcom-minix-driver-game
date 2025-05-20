@@ -12,9 +12,8 @@ int readKBControlleroutput(uint8_t port, uint8_t *output, uint8_t mouse) {
 
     uint8_t status;
 
-    uint8_t attempts = 10;
     
-    for (int i = 0; i < attempts; i++){
+    for (int i = 0; i < 10; i++){
 
         if (readKBControllerstat(&status) != 0) {
             printf("Error: Status!\n");

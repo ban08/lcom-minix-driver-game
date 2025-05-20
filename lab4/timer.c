@@ -116,10 +116,12 @@ int (timer_display_conf)(uint8_t timer, uint8_t st, enum timer_status_field fiel
 
   union timer_status_field_val data;
 
-  if (field == tsf_all) { 
+  if (field == tsf_all) 
+  { 
     data.byte = st; 
   }
-  else if (field == tsf_initial) {                                       
+  else if (field == tsf_initial) 
+  {                                       
       st = (st >> 4) & 0x03;
   
       if (st == 1)
@@ -138,7 +140,8 @@ int (timer_display_conf)(uint8_t timer, uint8_t st, enum timer_status_field fiel
       }
   }
 
-  else if (field == tsf_mode) {
+  else if (field == tsf_mode) 
+  {
       st = (st >> 1) & 0x07;
   
       if (st == 6)
@@ -153,11 +156,13 @@ int (timer_display_conf)(uint8_t timer, uint8_t st, enum timer_status_field fiel
       }
   }
 
-  else if (field == tsf_base) {
+  else if (field == tsf_base) 
+  {
       data.bcd = st & TIMER_BCD;
   }
 
-  else {
+  else 
+  {
       return 1;
   }
 
