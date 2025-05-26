@@ -41,55 +41,6 @@ int main(int argc, char *argv[]) {
 }
 
 
-//trocar nome e colocar em ficheiro à parte
-int (waiting_ESC_key)() 
-{
-
-  int status;
-
-  uint8_t kb_irq_mask;
-
-  message message;
-
-
-  if (keyboard_subscribe_interruptions(&kb_irq_mask) != 0) 
-  {
-
-    return 1;
-  }
-  while (scan_code != BREAK_CODE_ESCAPE)
-  {
-    if (driver_receive(ANY, &message, &status) != 0) 
-    {
-
-      printf("driver_receive failed\n");
-      continue;
-    }
-    if (is_ipc_notify(status)) 
-    {
-
-      if (_ENDPOINT_P(message.m_source) == HARDWARE) 
-      {
-
-        if (message.m_notify.interrupts & kb_irq_mask) 
-        {
-          kbc_ih();
-        }
-      }
-    }
-      
-  }
-  if (keyboard_unsubscribe_interruptions() == 0) 
-  {
-
-    return 0;
-  }
-
-  return 1;
-}
-
-
-
 
 int(video_test_init)(uint16_t mode, uint8_t delay) {
 
@@ -118,7 +69,7 @@ int(video_test_rectangle)(uint16_t mode, uint16_t x, uint16_t y, uint16_t width,
   (set_frame_buffer(mode) == 0)&&
   (normalize_color(color, &new_color) == 0)&&
   (vg_draw_rectangle(x, y, width, height, new_color) == 0)&&
-  (waiting_ESC_key() == 0)&&
+  (was_ESC_pressed() == 0)&&
   (vg_exit() == 0)) 
   {
     return 0; //tudo certo, posso retornar success
@@ -179,7 +130,7 @@ int (video_test_pattern)(uint16_t mode, uint8_t no_rectangles, uint32_t first_co
     }
   }
 
-  if ((waiting_ESC_key() == 0) && (vg_exit() == 0))
+  if ((was_ESC_pressed() == 0) && (vg_exit() == 0))
   {
 
     return 0;
@@ -194,7 +145,7 @@ int(video_test_xpm)(xpm_map_t xpm, uint16_t x, uint16_t y) {
   if (set_frame_buffer(0x105) == 0 &&
   set_graphic_mode(0x105) == 0 &&
   print_xpm(xpm, x, y) == 0 &&
-  waiting_ESC_key() == 0 &&
+  was_ESC_pressed() == 0 &&
   vg_exit() == 0) 
   {
     return 0;

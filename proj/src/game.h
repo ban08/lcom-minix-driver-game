@@ -9,8 +9,8 @@
 
 typedef enum {
     UP,
-    DOWN;
-    IDLE;
+    DOWN,
+    IDLE,
 } movement_states;
 
 

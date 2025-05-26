@@ -57,16 +57,16 @@ int(proj_main_loop)(int argc, char *argv[]) {
                         game_draw();
                     }
                     if (msg.m_notify.interrupts & irq_set_kbd) {
-                        kbd_int_handler();
+                        kbc_ih();
                         if (scan_code == BREAK_CODE_ESCAPE) running = false;
-                        if (scan_code == 0x39) game_jump();
+                        if (scan_code == 0x39 && y_position == 10) game_jump();
                     }
                     break;
             }
         }
     }
 
-    timer_unsubscribe_int();~
+    timer_unsubscribe_int();
 
     kbd_unsubscribe_int();
 
