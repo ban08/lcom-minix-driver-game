@@ -9,9 +9,9 @@
 
 void (kbc_ih)();
 
-int (keyboard_subscribe_interrupts)(uint8_t *bit_no);
+int (keyboard_subscribe_interruptions)(uint8_t *bit_no);
 
-int (keyboard_unsubscribe_interrupts)();
+int (keyboard_unsubscribe_interruptions)();
 
 int (keyboard_restore)();
 

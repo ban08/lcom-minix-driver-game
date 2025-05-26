@@ -9,7 +9,7 @@ uint32_t counter_kb_controller = 0;
 
 int keyboard_hook_id = 1;
 
-int (keyboard_subscribe_interrupts)(uint8_t *bit_no) {
+int (keyboard_subscribe_interruptions)(uint8_t *bit_no) {
     if (bit_no == NULL)
     {
         return 1;
@@ -20,7 +20,7 @@ int (keyboard_subscribe_interrupts)(uint8_t *bit_no) {
     return sys_irqsetpolicy(KEYBOARD_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &keyboard_hook_id);
 }
 
-int (keyboard_unsubscribe_interrupts)() {
+int (keyboard_unsubscribe_interruptions)() {
     return sys_irqrmpolicy(&keyboard_hook_id);
 }
 

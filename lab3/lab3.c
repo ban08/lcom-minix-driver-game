@@ -51,7 +51,7 @@ int(kbd_test_scan)() {
 
   uint8_t irq_mask;
 
-  if (keyboard_subscribe_interrupts(&irq_mask) != 0) 
+  if (keyboard_subscribe_interruptions(&irq_mask) != 0) 
   {
 
     return 1;
@@ -97,7 +97,7 @@ int(kbd_test_scan)() {
     }
   }
 
-  if (((kbd_print_no_sysinb(counter_kb_controller) != 0) || (keyboard_unsubscribe_interrupts() != 0))) 
+  if (((kbd_print_no_sysinb(counter_kb_controller) != 0) || (keyboard_unsubscribe_interruptions() != 0))) 
   {
     return 1;
   }
@@ -148,7 +148,7 @@ int(kbd_test_timed_scan)(uint8_t n) {
 
   int seconds = 0;
 
-  if ((timer_subscribe_int(&irq_set_timer) != 0) || (keyboard_subscribe_interrupts(&irq_set_kb_controller) != 0)) 
+  if ((timer_subscribe_int(&irq_set_timer) != 0) || (keyboard_subscribe_interruptions(&irq_set_kb_controller) != 0)) 
   {
     return 1;
   }
@@ -197,7 +197,7 @@ int(kbd_test_timed_scan)(uint8_t n) {
     }
   }
 
-  if ((timer_unsubscribe_int() != 0) || (keyboard_unsubscribe_interrupts() != 0) || (kbd_print_no_sysinb(counter_kb_controller) != 0))
+  if ((timer_unsubscribe_int() != 0) || (keyboard_unsubscribe_interruptions() != 0) || (kbd_print_no_sysinb(counter_kb_controller) != 0))
   {
     return 1;
   }
