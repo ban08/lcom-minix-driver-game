@@ -4,7 +4,7 @@
 //#include "utils.c"
 //#include "kb_controller.h"
 
-uint8_t scan_code = 0;
+uint8_t scan_code = 0; 
 uint32_t counter_kb_controller = 0;
 
 int keyboard_hook_id = 1;
