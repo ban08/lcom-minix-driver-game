@@ -9,6 +9,7 @@
 #include "keyboard.h"
 #include "video_card.h"
 #include "timer.c"
+#include "utils.c"
 
 extern vbe_mode_info_t mode_info;
 extern uint8_t scan_code;
@@ -238,7 +239,7 @@ int(video_test_move)(xpm_map_t xpm, uint16_t xi, uint16_t yi, uint16_t xf, uint1
     }
   }
 
-  if (vg_exit() == 0 ||timer_unsubscribe_int() == 0 ||keyboard_unsubscribe_interruptions() == 0) 
+  if (vg_exit() == 0 && timer_unsubscribe_int() == 0 && keyboard_unsubscribe_interruptions() == 0) 
   {
     return 0;
   }

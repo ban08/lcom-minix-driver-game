@@ -1,8 +1,9 @@
 #include <lcom/lcf.h>
 #include "video_card.h"
-#include "timer.h"
+#include "timer.c"
 #include "keyboard.h"
 #include "game.h"
+#include "kb_controller.h"
 
 
 extern uint8_t scan_code;
@@ -10,10 +11,10 @@ extern int counter;
 extern int h_id;
 extern int keyboard_hook_id;
 
-int x_position = 2;
-int y_position = 10;
+int x_position = 40;
+int y_position = 700;
 
-movement_states movement_state = IDLE;
+movement_states movement_state = BASE;
 
 int main(int argc, char *argv[]) {
     lcf_set_language("EN-US");
@@ -28,11 +29,13 @@ int main(int argc, char *argv[]) {
 
 
 int(proj_main_loop)(int argc, char *argv[]) {
-    if (vg_init(0x115) == NULL) return 1;
+    if (set_frame_buffer(0x115) != 0) return 1;
+    if (set_graphic_mode(0x115) != 0) return 1;    
+    uint8_t irq_mask;
+    if (keyboard_subscribe_interruptions(&irq_mask)) return 1;
+    uint8_t irq_set;
 
-    if (keyboard_subscribe_interruptions()) return 1;
-
-    if (timer_subscribe_int()) return 1;
+    if (timer_subscribe_int(&irq_set)) return 1;
 
     int ipc_status;
 
@@ -46,7 +49,7 @@ int(proj_main_loop)(int argc, char *argv[]) {
     {
         if ((r = driver_receive(ANY, &msg, &ipc_status)) != 0) continue;
 
-        if (is_ipc_notify(msg)) {
+        if (is_ipc_notify(ipc_status)) {
 
             switch (_ENDPOINT_P(msg.m_source)) {
 
@@ -68,9 +71,10 @@ int(proj_main_loop)(int argc, char *argv[]) {
 
     timer_unsubscribe_int();
 
-    kbd_unsubscribe_int();
+    keyboard_unsubscribe_interruptions();
 
     vg_exit();
 
     return 0;
 }
+

@@ -7,8 +7,8 @@
 
 extern vbe_mode_info_t mode_info;
 extern uint8_t* frame_buffer;
-int vg_exit();
-int vbe_get_mode_info(uint16_t mode, vbe_mode_info_t *vmi_p);
+//int vg_exit();
+//int vbe_get_mode_info(uint16_t mode, vbe_mode_info_t *vmi_p);
 int (set_graphic_mode)(uint16_t s_mode);
 int (set_text_mode)();
 int (set_frame_buffer)(uint16_t mode);

@@ -12,9 +12,7 @@ uint8_t* frame_buffer;
 #include <lcom/vbe.h>
 #include <lcom/utils.h>
 
-int vg_exit() {
-    return set_text_mode();
-}
+/*
 
 int vbe_get_mode_info(uint16_t mode, vbe_mode_info_t *vmi_p) {
   mmap_t mapa;
@@ -37,6 +35,7 @@ int vbe_get_mode_info(uint16_t mode, vbe_mode_info_t *vmi_p) {
   r.cx = mode;
 
   r.es = PB2BASE(mapa.phys);
+
   r.di = PB2OFF(mapa.phys);
 
   r.intno = 0x10;
@@ -56,11 +55,12 @@ int vbe_get_mode_info(uint16_t mode, vbe_mode_info_t *vmi_p) {
   }
 
   memcpy(vmi_p, mapa.virt, sizeof(vbe_mode_info_t));
+
   lm_free(&mapa);
 
   return 0;
 }
-
+*/
 
 
 int (set_graphic_mode)(uint16_t s_mode) {
@@ -122,6 +122,7 @@ int (set_text_mode)() {
 int (set_frame_buffer)(uint16_t mode){
 
     size_t info_size = sizeof(mode_info);
+    
     memset(&mode_info, 0, info_size);
 
     if (vbe_get_mode_info(mode, &mode_info) != 0) 

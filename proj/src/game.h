@@ -10,10 +10,14 @@
 typedef enum {
     UP,
     DOWN,
-    IDLE,
+    BASE
 } movement_states;
 
-
+void game_jump();
+void game_update();
+void game_draw();
+void update_movement_state(movement_states change);
+int draw_dino(xpm_map_t xpm, uint16_t x, uint16_t y);
 
 
 

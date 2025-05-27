@@ -1,10 +1,10 @@
 #include <lcom/lcf.h>
 
 #include <stdint.h>
+#include "keyboard.h"
 
 
-
-
+extern uint8_t scan_code;
 
 
 int(util_get_LSB)(uint16_t val, uint8_t *lsb) {
