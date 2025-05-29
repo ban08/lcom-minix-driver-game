@@ -136,7 +136,6 @@ int(video_test_rectangle)(uint16_t mode, uint16_t x, uint16_t y, uint16_t width,
     return 1;
   }
 
-
   //3) draw rectangle
 
   //uint8_t *pixel = video_mem + y * vmi_p.BytesPerScanLine + x * (vmi_p.BytesPerScanLine / vmi_p.XResolution);
@@ -148,13 +147,17 @@ int(video_test_rectangle)(uint16_t mode, uint16_t x, uint16_t y, uint16_t width,
         return 1;
       }*/
     for (int i = x; i <= x+width; i++){
-      memcpy((char*)video_mem + vmi_p.BytesPerScanLine/vmi_p.XResolution * vmi_p.XResolution * j + vmi_p.BytesPerScanLine/vmi_p.XResolution * i, &color, vmi_p.BitsPerPixel/8);
+      memcpy((char*)video_mem + vmi_p.BytesPerScanLine/vmi_p.XResolution * vmi_p.XResolution * j
+      +
+      vmi_p.BytesPerScanLine/vmi_p.XResolution * i, &color, vmi_p.BytesPerScanLine/vmi_p.XResolution);
     }
   } 
   
   //4) reset the video mode to minix default's text mode and return after reeiving break code of the ESC key (0x81)
 
   sleep(5);
+  // TODO: make the code to integrate the keyboard
+  
   vg_exit();
   return 0;
 }
