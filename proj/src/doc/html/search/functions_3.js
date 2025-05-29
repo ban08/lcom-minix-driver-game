@@ -1,0 +1,12 @@
+var searchData=
+[
+  ['game_5fdraw_0',['game_draw',['../game_8h.html#a7751a93bc2b898c4f2addfdc1a6c8f3a',1,'game.h']]],
+  ['game_5fjump_1',['game_jump',['../game_8c.html#ab506c70da7ad6069c2ef3bd6f6f4e0c1',1,'game_jump():&#160;game.c'],['../game_8h.html#ab506c70da7ad6069c2ef3bd6f6f4e0c1',1,'game_jump():&#160;game.c']]],
+  ['game_5fstart_2',['game_start',['../game_8c.html#a79c768af7e6b54900af218d7f2c92738',1,'game_start():&#160;game.c'],['../game_8h.html#a79c768af7e6b54900af218d7f2c92738',1,'game_start():&#160;game.c']]],
+  ['game_5fupdate_3',['game_update',['../game_8h.html#ac5254959a1940bb1fdaa4d884da8115d',1,'game.h']]],
+  ['get_5fblue_5fcomponent_4',['get_blue_component',['../video__card_8c.html#ac00341006efd157fd5f7944ae14a4a83',1,'get_blue_component(unsigned col_index, unsigned row_index, uint8_t step, uint32_t first_color):&#160;video_card.c'],['../video__card_8h.html#ac00341006efd157fd5f7944ae14a4a83',1,'get_blue_component(unsigned col_index, unsigned row_index, uint8_t step, uint32_t first_color):&#160;video_card.c']]],
+  ['get_5fdirect_5fcolor_5',['get_direct_color',['../video__card_8c.html#abbd567e7d7e5310b0a311f3f918184e5',1,'get_direct_color(uint32_t red, uint32_t green, uint32_t blue):&#160;video_card.c'],['../video__card_8h.html#abbd567e7d7e5310b0a311f3f918184e5',1,'get_direct_color(uint32_t red, uint32_t green, uint32_t blue):&#160;video_card.c']]],
+  ['get_5fgreen_5fcomponent_6',['get_green_component',['../video__card_8c.html#ad64a6e29965a9f46262cfadcddf483e4',1,'get_green_component(unsigned row_index, uint8_t step, uint32_t first_color):&#160;video_card.c'],['../video__card_8h.html#ad64a6e29965a9f46262cfadcddf483e4',1,'get_green_component(unsigned row_index, uint8_t step, uint32_t first_color):&#160;video_card.c']]],
+  ['get_5findexed_5fcolor_7',['get_indexed_color',['../video__card_8c.html#a911cacb256d38b447b37072b5d98bf58',1,'get_indexed_color(uint16_t col, uint16_t row, uint8_t step, uint32_t first, uint8_t n):&#160;video_card.c'],['../video__card_8h.html#a911cacb256d38b447b37072b5d98bf58',1,'get_indexed_color(uint16_t col, uint16_t row, uint8_t step, uint32_t first, uint8_t n):&#160;video_card.c']]],
+  ['get_5fred_5fcomponent_8',['get_red_component',['../video__card_8c.html#ac97395fabb983e3ad1c5a75c102288e8',1,'get_red_component(unsigned col_index, uint8_t step, uint32_t first_color):&#160;video_card.c'],['../video__card_8h.html#ac97395fabb983e3ad1c5a75c102288e8',1,'get_red_component(unsigned col_index, uint8_t step, uint32_t first_color):&#160;video_card.c']]]
+];
