@@ -17,8 +17,10 @@ Sprite* start_sprite = NULL;
 int janela_min = 0;
 int janela_max = 800;
 
-
-
+if (janela_min > 3700){
+    janela_min = -200;
+    janela_max = 600;
+}
 
 int enemy_x_coordinates[] = {700,1200,1450,1900,2900,3100,3500,3700};
 
