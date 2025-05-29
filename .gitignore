@@ -7,3 +7,4 @@ proj/src/proj
 *.gdbinit
 */trace.txt
 */output.txt
+*/vscode/
