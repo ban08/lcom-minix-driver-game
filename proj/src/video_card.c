@@ -222,7 +222,7 @@ int (print_xpm)(xpm_map_t xpm, uint16_t x, uint16_t y) {
 
   xpm_image_t imagem;
 
-  uint8_t *cores = xpm_load(xpm, XPM_INDEXED, &imagem);
+  uint8_t *cores = xpm_load(xpm, XPM_8_8_8_8, &imagem);  
 
   int alt = imagem.height;
 
@@ -244,7 +244,6 @@ int (print_xpm)(xpm_map_t xpm, uint16_t x, uint16_t y) {
 
 
 }
-
 
 int normalize_color(uint32_t color, uint32_t *new_color) {
   int bpp = mode_info.BitsPerPixel;
@@ -308,3 +307,15 @@ uint32_t extract_blue(uint32_t color) {
     uint32_t mask = (1 << mode_info.BlueMaskSize) - 1;
     return (color >> mode_info.BlueFieldPosition) & mask;
 }
+
+
+
+void clear_screen(uint32_t color) {
+    uint32_t* buffer = (uint32_t*) frame_buffer;
+    size_t total_pixels = mode_info.XResolution * mode_info.YResolution;
+
+    for (size_t i = 0; i < total_pixels; i++) {
+        buffer[i] = color;
+    }
+}
+

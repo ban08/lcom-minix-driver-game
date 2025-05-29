@@ -25,5 +25,6 @@ uint32_t get_blue_component(unsigned col_index, unsigned row_index, uint8_t step
 uint32_t extract_red(uint32_t color);
 uint32_t extract_green(uint32_t color);
 uint32_t extract_blue(uint32_t color);
+void clear_screen(uint32_t color);
 
 #endif

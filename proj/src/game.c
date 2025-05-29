@@ -1,83 +1,146 @@
 //#include "main.c"
 #include "game.h"
-//#include "sprite.h"
+#include "sprite.h"
 #include "video_card.h"
 #include "utils.c"
 
 extern int x_position;
 extern int y_position;
-
+extern bool running;
+extern int is_going_up;
 
 extern movement_states movement_state;
 
+int has_started = 0;
+Sprite* start_sprite = NULL;
 
-void game_jump(){
-    update_movement_state(UP);
+int janela_min = 0;
+int janela_max = 800;
+
+
+
+
+int enemy_x_coordinates[] = {700,1200,1450,1900,2900,3100,3500,3700};
+
+void game_start(){
+    if (has_started == 0){
+        has_started = 1;
+        vg_draw_rectangle(0,0, mode_info.XResolution, 500, 0xFF7DC7C4);
+        
+        //sol
+        vg_draw_rectangle(620,70, 80, 80, 0xFFE0C25C);
+        vg_draw_rectangle(630,80, 60, 60, 0xFFD1A513);
+        //sol
+
+        //nuvem
+        vg_draw_rectangle(80,80, 450, 140, 0XFF969696);
+        vg_draw_rectangle(100,100, 220, 100, 0XFFBABABA);
+        vg_draw_rectangle(350,110, 110, 90, 0XFFBABABA);
+        //nuvem
+
+
+        vg_draw_rectangle(0,500, mode_info.XResolution, 25, 0xFFBD9773);
+        vg_draw_rectangle(0,525, mode_info.XResolution, 25, 0xFF9E7E60);
+        vg_draw_rectangle(0,550, mode_info.XResolution, 25, 0xFF735C46);
+        vg_draw_rectangle(0,575, mode_info.XResolution, 25, 0xFF45372A);
+
+
+
+
+
+
+        
+    }
+
+
     
-}
+    game_jump();
 
-void game_update() {
-/*
-    if (is_jumping) {
-        dino_y += dino_velocity_y;
-        dino_velocity_y += 1;
-
-        if (dino_y >= GROUND_Y) {
-            dino_y = GROUND_Y;
-            dino_velocity_y = 0;
-            is_jumping = false;
+//limpar os pixeis
+    for (int y = 325; y < 500; y++) {
+        for (int x = 40; x < 70; x++) {
+            vg_draw_pixel(x, y, 0xFF7DC7C4);
         }
     }
 
-*/
+
+    for (int y = 488; y < 500; y++) {
+        for (int x = 0; x < mode_info.XResolution; x++) {
+            vg_draw_pixel(x, y, 0xFF7DC7C4);
+        }
+    }
+//limpar os pixeis
+
+
+
+    vg_draw_rectangle(x_position, y_position, 30, 75, 0XFF105902);
+    //vg_draw_hline(0, 500, 800, 0xFFFF0000);
+
+    draw_enemies();
+    janela_min = janela_min + 5;
+    janela_max = janela_max + 5;
+
+
+    usleep(16000); // aprox 60 FPS --> parece me ser o sweet spot. + frames, + tearing
+
 
 }
 
-void game_draw() {
-    //vg_clear();
-static const char *dino[] = {
-  "15 15 3 1",
-  "  c None",
-  ". c black",
-  "X c #EAD012",
-  "       ....... ",
-  "      ...X.... ",
-  "      ........ ",
-  "      ....     ",
-  "      .......  ",
-  "     .....     ",
-  " .  ......     ",
-  " ...........   ",
-  " ......... .   ",
-  " .........     ",
-  "  .......      ",
-  "   .....       ",
-  "    .  .       ",
-  "    .  ..      ",
-  "    ..         "
-};
+void draw_enemies(){
+    for (unsigned int i = 0; i < 8; i++){
+        if ((enemy_x_coordinates[i] > janela_min) && (enemy_x_coordinates[i] < janela_max)){
+            vg_draw_rectangle(enemy_x_coordinates[i] - janela_min, 488, 4, 12, 0xFFE37610);
+            if ((enemy_x_coordinates[i] - janela_min > 40) && (enemy_x_coordinates[i] - janela_min < 70) && (y_position > 425 - 12)){
+                running = false; //se colidir com os espinhos, sai
+                printf("You scored %d points!", enemy_x_coordinates[i]);
+            }
+        }
+
+
+
+    }
+
+
+
+}
+
+
+
+//afinal não é preciso. basat estimar os pontos em que a imagem pode mudar, nao precisamos de os calcular
+to_delete calculate_to_delete (int new_x, int old_x, int new_y, int old_y, int type){
+    //type 0 -> dino
+    //type 1 -> cacto
+
+    //largura dino -> 30, altura -> 75
+    to_delete output;
+
+    if (type == 1){
+        output.x_1 = 40;
+        output.x_2 = 70;
+
+        if (new_y < old_y){
+            output.y_1 = old_y;
+            output.y_2 = new_y;
+        }
+
+    }
+
+    return output;
+}
+//
+
+void game_jump(){
+    if (is_going_up && y_position > 325){
+        y_position = y_position - 5;
+    }
+    else if (is_going_up && y_position <= 325){
+        is_going_up = 0;
+    }
+    else if (!is_going_up && y_position < 425){
+        y_position = y_position + 5;
+    }
 
     
-        draw_dino((xpm_map_t)dino, 100, 500);
 
 }
 
-void update_movement_state(movement_states change){
-    movement_state = change;
-
-}
-
-int draw_dino(xpm_map_t xpm, uint16_t x, uint16_t y){
-  if (//set_frame_buffer(0x105) == 0 &&
-  //set_graphic_mode(0x105) == 0 &&
-  print_xpm(xpm, x, y) == 0 //Y&&
-  //was_ESC_pressed() == 0 &&
-  //vg_exit() == 0) 
-  )
-  {
-    return 0;
-  }
-
-  return 1;
-
-}

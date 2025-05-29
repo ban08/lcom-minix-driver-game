@@ -1,11 +1,8 @@
-/* XPM */
-static char *_4bbd7384a744bd6b79c4e50f49360a0I2Buia2zYDNACdeb[] = {
-/* columns rows colors chars-per-pixel */
-"100 100 3 1 ",
+static const char *start_xpm[] = {
+"100 100 3 1",
 "  c None",
-". c black",
-"X c red",
-/* pixels */
+". c #000000",
+"X c #FF0000",
 "                                                                                                    ",
 "                                                                                                    ",
 "                                                                                                    ",
