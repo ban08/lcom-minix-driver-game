@@ -17,10 +17,6 @@ Sprite* start_sprite = NULL;
 int janela_min = 0;
 int janela_max = 800;
 
-/*if (janela_min > 3700){
-    janela_min = -200;
-    janela_max = 600;
-}*/
 
 int enemy_x_coordinates[] = {700,1200,1450,1900,2900,3100,3500,3700};
 
@@ -82,6 +78,10 @@ void game_start(){
     janela_min = janela_min + 5;
     janela_max = janela_max + 5;
 
+    if (janela_min > 3700){
+    janela_min = -200;
+    janela_max = 600;
+}
 
     usleep(16000); // aprox 60 FPS --> parece me ser o sweet spot. + frames, + tearing
 
