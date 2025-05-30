@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['enemy_5fx_5fcoordinates_0',['enemy_x_coordinates',['../game_8c.html#aada26ca42ea396655df3fe3c1e949572',1,'game.c']]]
+  ['is_5fgoing_5fup_0',['is_going_up',['../game_8c.html#a6dc2727e542a0d8ce15b60b6e0cad1dc',1,'main.c']]]
 ];
