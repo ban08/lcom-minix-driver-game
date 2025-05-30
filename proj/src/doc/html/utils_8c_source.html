@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.14.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>LCOM_2LEIC16_2: utils.c Source File</title>
+<title>LCOM_2LEIC16_2: C:/Users/anaso/Documents/LCOM/MINIX-LCOM/shared/shared/proj/src/utils.c Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -91,30 +91,25 @@ $(function(){initNavTree('utils_8c_source.html','',''); });
   <div class="headertitle"><div class="title">utils.c</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="utils_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &lt;lcom/lcf.h&gt;</span></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &lt;lcom/lcf.h&gt;</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;<a class="code" href="keyboard_8h.html">keyboard.h</a>&quot;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;keyboard.h&quot;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">extern</span> uint8_t <a class="code hl_variable" href="keyboard_8c.html#af4aead9dfdc0d2f7e93662387a21e0bc">scan_code</a>;</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">extern</span> uint8_t scan_code;</div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span></div>
-<div class="foldopen" id="foldopen00014" data-start="{" data-end="}">
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="utils_8c.html#a31ab374573517f8a5ba31c52a49a8606">   14</a></span>int(<a class="code hl_function" href="utils_8c.html#a31ab374573517f8a5ba31c52a49a8606">util_get_LSB</a>)(uint16_t val, uint8_t *lsb) {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>int(util_get_LSB)(uint16_t val, uint8_t *lsb) {</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>  <span class="keywordflow">if</span> (lsb == NULL) <span class="keywordflow">return</span> 1;</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  *lsb = val &amp; 0xFF;</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>}</div>
-</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span></div>
-<div class="foldopen" id="foldopen00027" data-start="{" data-end="}">
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="utils_8c.html#afc6ca7a9a39943ff1792d206da514a59">   27</a></span>int(<a class="code hl_function" href="utils_8c.html#afc6ca7a9a39943ff1792d206da514a59">util_get_MSB</a>)(uint16_t val, uint8_t *msb) {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>int(util_get_MSB)(uint16_t val, uint8_t *msb) {</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="keywordflow">if</span> (msb == NULL) <span class="keywordflow">return</span> 1;</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  *msb = val &gt;&gt; 8;</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>}</div>
-</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span></div>
-<div class="foldopen" id="foldopen00040" data-start="{" data-end="}">
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="utils_8c.html#a2b56f50ba159e9d5115ed1a75eff15d9">   40</a></span>int (<a class="code hl_function" href="utils_8c.html#a2b56f50ba159e9d5115ed1a75eff15d9">util_sys_inb</a>)(<span class="keywordtype">int</span> port, uint8_t *value) {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>int (util_sys_inb)(<span class="keywordtype">int</span> port, uint8_t *value) {</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="keywordflow">if</span> (value == NULL) <span class="keywordflow">return</span> 1;</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  uint32_t v;</div>
@@ -122,18 +117,16 @@ $(function(){initNavTree('utils_8c_source.html','',''); });
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  *value = v &amp; 0xFF; <span class="comment">// Mask out only the LSB of the returned value</span></div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  <span class="keywordflow">return</span> r;</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>}</div>
-</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span></div>
-<div class="foldopen" id="foldopen00057" data-start="{" data-end="}">
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="utils_8c.html#a5147971a4005a3d125470ee0836f4e2e">   57</a></span>int (<a class="code hl_function" href="utils_8c.html#a5147971a4005a3d125470ee0836f4e2e">was_ESC_pressed</a>)() {</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>int (was_ESC_pressed)() {</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  <span class="keywordtype">int</span> status;</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  uint8_t kb_irq_mask;</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  message msg;</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  <span class="keywordflow">if</span> (<a class="code hl_function" href="keyboard_8c.html#a35ce19ce1eb7d87dc4f75b0730ec677d">keyboard_subscribe_interruptions</a>(&amp;kb_irq_mask) != 0)</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  <span class="keywordflow">if</span> (keyboard_subscribe_interruptions(&amp;kb_irq_mask) != 0)</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordflow">return</span> 1;</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  <span class="keywordflow">while</span> (<a class="code hl_variable" href="keyboard_8c.html#af4aead9dfdc0d2f7e93662387a21e0bc">scan_code</a> != <a class="code hl_define" href="i8042_8h.html#aee9e55c192d81664efed94e18513ba23">BREAK_CODE_ESCAPE</a>) {</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  <span class="keywordflow">while</span> (scan_code != BREAK_CODE_ESCAPE) {</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordflow">if</span> (driver_receive(ANY, &amp;msg, &amp;status) != 0) {</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>      printf(<span class="stringliteral">&quot;driver_receive failed\n&quot;</span>);</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>      <span class="keywordflow">continue</span>;</div>
@@ -142,35 +135,24 @@ $(function(){initNavTree('utils_8c_source.html','',''); });
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordflow">if</span> (is_ipc_notify(status)) {</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>      <span class="keywordflow">if</span> (_ENDPOINT_P(msg.m_source) == HARDWARE) {</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <span class="keywordflow">if</span> (msg.m_notify.interrupts &amp; kb_irq_mask) {</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>          <a class="code hl_function" href="keyboard_8c.html#ab9e6ed7960d60aa4834f2038247d4536">kbc_ih</a>();  <span class="comment">// Keyboard interrupt handler</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>          kbc_ih();  <span class="comment">// Keyboard interrupt handler</span></div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        }</div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>      }</div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    }</div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>  }</div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  <span class="keywordflow">if</span> (<a class="code hl_function" href="keyboard_8c.html#ac21fb9fb15db461fa71164d99796d960">keyboard_unsubscribe_interruptions</a>() != 0)</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  <span class="keywordflow">if</span> (keyboard_unsubscribe_interruptions() != 0)</div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keywordflow">return</span> 1;</div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>}</div>
-</div>
-<div class="ttc" id="ai8042_8h_html_aee9e55c192d81664efed94e18513ba23"><div class="ttname"><a href="i8042_8h.html#aee9e55c192d81664efed94e18513ba23">BREAK_CODE_ESCAPE</a></div><div class="ttdeci">#define BREAK_CODE_ESCAPE</div><div class="ttdef"><b>Definition</b> i8042.h:13</div></div>
-<div class="ttc" id="akeyboard_8c_html_a35ce19ce1eb7d87dc4f75b0730ec677d"><div class="ttname"><a href="keyboard_8c.html#a35ce19ce1eb7d87dc4f75b0730ec677d">keyboard_subscribe_interruptions</a></div><div class="ttdeci">int keyboard_subscribe_interruptions(uint8_t *bit_no)</div><div class="ttdoc">Subscribes keyboard interrupts.</div><div class="ttdef"><b>Definition</b> keyboard.c:18</div></div>
-<div class="ttc" id="akeyboard_8c_html_ab9e6ed7960d60aa4834f2038247d4536"><div class="ttname"><a href="keyboard_8c.html#ab9e6ed7960d60aa4834f2038247d4536">kbc_ih</a></div><div class="ttdeci">void kbc_ih()</div><div class="ttdoc">Keyboard interrupt handler.</div><div class="ttdef"><b>Definition</b> keyboard.c:40</div></div>
-<div class="ttc" id="akeyboard_8c_html_ac21fb9fb15db461fa71164d99796d960"><div class="ttname"><a href="keyboard_8c.html#ac21fb9fb15db461fa71164d99796d960">keyboard_unsubscribe_interruptions</a></div><div class="ttdeci">int keyboard_unsubscribe_interruptions()</div><div class="ttdoc">Unsubscribes keyboard interrupts.</div><div class="ttdef"><b>Definition</b> keyboard.c:31</div></div>
-<div class="ttc" id="akeyboard_8c_html_af4aead9dfdc0d2f7e93662387a21e0bc"><div class="ttname"><a href="keyboard_8c.html#af4aead9dfdc0d2f7e93662387a21e0bc">scan_code</a></div><div class="ttdeci">uint8_t scan_code</div><div class="ttdoc">Stores the current scan code.</div><div class="ttdef"><b>Definition</b> keyboard.c:5</div></div>
-<div class="ttc" id="akeyboard_8h_html"><div class="ttname"><a href="keyboard_8h.html">keyboard.h</a></div></div>
-<div class="ttc" id="autils_8c_html_a2b56f50ba159e9d5115ed1a75eff15d9"><div class="ttname"><a href="utils_8c.html#a2b56f50ba159e9d5115ed1a75eff15d9">util_sys_inb</a></div><div class="ttdeci">int util_sys_inb(int port, uint8_t *value)</div><div class="ttdoc">Reads a byte from an I/O port using sys_inb and returns only the least significant byte.</div><div class="ttdef"><b>Definition</b> utils.c:40</div></div>
-<div class="ttc" id="autils_8c_html_a31ab374573517f8a5ba31c52a49a8606"><div class="ttname"><a href="utils_8c.html#a31ab374573517f8a5ba31c52a49a8606">util_get_LSB</a></div><div class="ttdeci">int util_get_LSB(uint16_t val, uint8_t *lsb)</div><div class="ttdoc">Retrieves the least significant byte (LSB) of a 16-bit value.</div><div class="ttdef"><b>Definition</b> utils.c:14</div></div>
-<div class="ttc" id="autils_8c_html_a5147971a4005a3d125470ee0836f4e2e"><div class="ttname"><a href="utils_8c.html#a5147971a4005a3d125470ee0836f4e2e">was_ESC_pressed</a></div><div class="ttdeci">int was_ESC_pressed()</div><div class="ttdoc">Waits for the ESC break code to be pressed on the keyboard.</div><div class="ttdef"><b>Definition</b> utils.c:57</div></div>
-<div class="ttc" id="autils_8c_html_afc6ca7a9a39943ff1792d206da514a59"><div class="ttname"><a href="utils_8c.html#afc6ca7a9a39943ff1792d206da514a59">util_get_MSB</a></div><div class="ttdeci">int util_get_MSB(uint16_t val, uint8_t *msb)</div><div class="ttdoc">Retrieves the most significant byte (MSB) of a 16-bit value.</div><div class="ttdef"><b>Definition</b> utils.c:27</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a href="utils_8c.html">utils.c</a></li>
+    <li class="navelem"><a href="dir_d522931ffa1371640980b621734a4381.html">Users</a></li><li class="navelem"><a href="dir_b968b17b1d7f8385fd0d627b8491076a.html">anaso</a></li><li class="navelem"><a href="dir_3820fe100da7ac4de38c69bffeca9410.html">Documents</a></li><li class="navelem"><a href="dir_fe36d2ffeec61690af9d54d674947fd3.html">LCOM</a></li><li class="navelem"><a href="dir_201845de07efaff868a958822640c2ff.html">MINIX-LCOM</a></li><li class="navelem"><a href="dir_b2c7451a30c03ab8c930f8fd2937147f.html">shared</a></li><li class="navelem"><a href="dir_313e6ebe6621253bffae72afde5a7839.html">shared</a></li><li class="navelem"><a href="dir_4e9db24138578ec165c1b5eec3f6ed9d.html">proj</a></li><li class="navelem"><a href="dir_e98a4446b1716ad806b184e639211b40.html">src</a></li><li class="navelem"><b>utils.c</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>

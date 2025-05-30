@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.14.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>LCOM_2LEIC16_2: keyboard.h Source File</title>
+<title>LCOM_2LEIC16_2: C:/Users/anaso/Documents/LCOM/MINIX-LCOM/shared/shared/proj/src/keyboard.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -91,39 +91,32 @@ $(function(){initNavTree('keyboard_8h_source.html','',''); });
   <div class="headertitle"><div class="title">keyboard.h</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="keyboard_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef _LCOM_KBD_H_</span></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef _LCOM_KBD_H_</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define _LCOM_KBD_H_</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;lcom/lcf.h&gt;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;minix/sysutil.h&gt;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="i8042_8h.html">i8042.h</a>&quot;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="kb__controller_8h.html">kb_controller.h</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;i8042.h&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;kb_controller.h&quot;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>void (<a class="code hl_function" href="keyboard_8c.html#ab9e6ed7960d60aa4834f2038247d4536">kbc_ih</a>)();</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>void (kbc_ih)();</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>int (<a class="code hl_function" href="keyboard_8c.html#a35ce19ce1eb7d87dc4f75b0730ec677d">keyboard_subscribe_interruptions</a>)(uint8_t *bit_no);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>int (keyboard_subscribe_interruptions)(uint8_t *bit_no);</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span></div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>int (<a class="code hl_function" href="keyboard_8c.html#ac21fb9fb15db461fa71164d99796d960">keyboard_unsubscribe_interruptions</a>)();</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>int (keyboard_unsubscribe_interruptions)();</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span></div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>int (<a class="code hl_function" href="keyboard_8c.html#a30aab366321c5fcad9b30c3afc1c3d4a">keyboard_restore</a>)();</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>int (keyboard_restore)();</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="keywordtype">int</span> <a class="code hl_function" href="keyboard_8h.html#ac7ae436f9dab8020bdaedd5cb32daa77">util_sys_inb_counter</a>(<span class="keywordtype">int</span> port, uint8_t *value);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="keywordtype">int</span> util_sys_inb_counter(<span class="keywordtype">int</span> port, uint8_t *value);</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor">#endif </span><span class="comment">// _LCOM_KBD_H_</span></div>
-<div class="ttc" id="ai8042_8h_html"><div class="ttname"><a href="i8042_8h.html">i8042.h</a></div></div>
-<div class="ttc" id="akb__controller_8h_html"><div class="ttname"><a href="kb__controller_8h.html">kb_controller.h</a></div></div>
-<div class="ttc" id="akeyboard_8c_html_a30aab366321c5fcad9b30c3afc1c3d4a"><div class="ttname"><a href="keyboard_8c.html#a30aab366321c5fcad9b30c3afc1c3d4a">keyboard_restore</a></div><div class="ttdeci">int keyboard_restore()</div><div class="ttdoc">Restores the command byte to enable keyboard interrupts.</div><div class="ttdef"><b>Definition</b> keyboard.c:53</div></div>
-<div class="ttc" id="akeyboard_8c_html_a35ce19ce1eb7d87dc4f75b0730ec677d"><div class="ttname"><a href="keyboard_8c.html#a35ce19ce1eb7d87dc4f75b0730ec677d">keyboard_subscribe_interruptions</a></div><div class="ttdeci">int keyboard_subscribe_interruptions(uint8_t *bit_no)</div><div class="ttdoc">Subscribes keyboard interrupts.</div><div class="ttdef"><b>Definition</b> keyboard.c:18</div></div>
-<div class="ttc" id="akeyboard_8c_html_ab9e6ed7960d60aa4834f2038247d4536"><div class="ttname"><a href="keyboard_8c.html#ab9e6ed7960d60aa4834f2038247d4536">kbc_ih</a></div><div class="ttdeci">void kbc_ih()</div><div class="ttdoc">Keyboard interrupt handler.</div><div class="ttdef"><b>Definition</b> keyboard.c:40</div></div>
-<div class="ttc" id="akeyboard_8c_html_ac21fb9fb15db461fa71164d99796d960"><div class="ttname"><a href="keyboard_8c.html#ac21fb9fb15db461fa71164d99796d960">keyboard_unsubscribe_interruptions</a></div><div class="ttdeci">int keyboard_unsubscribe_interruptions()</div><div class="ttdoc">Unsubscribes keyboard interrupts.</div><div class="ttdef"><b>Definition</b> keyboard.c:31</div></div>
-<div class="ttc" id="akeyboard_8h_html_ac7ae436f9dab8020bdaedd5cb32daa77"><div class="ttname"><a href="keyboard_8h.html#ac7ae436f9dab8020bdaedd5cb32daa77">util_sys_inb_counter</a></div><div class="ttdeci">int util_sys_inb_counter(int port, uint8_t *value)</div><div class="ttdoc">Reads from a port and counts accesses to the keyboard controller.</div><div class="ttdef"><b>Definition</b> keyboard.c:68</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a href="keyboard_8h.html">keyboard.h</a></li>
+    <li class="navelem"><a href="dir_d522931ffa1371640980b621734a4381.html">Users</a></li><li class="navelem"><a href="dir_b968b17b1d7f8385fd0d627b8491076a.html">anaso</a></li><li class="navelem"><a href="dir_3820fe100da7ac4de38c69bffeca9410.html">Documents</a></li><li class="navelem"><a href="dir_fe36d2ffeec61690af9d54d674947fd3.html">LCOM</a></li><li class="navelem"><a href="dir_201845de07efaff868a958822640c2ff.html">MINIX-LCOM</a></li><li class="navelem"><a href="dir_b2c7451a30c03ab8c930f8fd2937147f.html">shared</a></li><li class="navelem"><a href="dir_313e6ebe6621253bffae72afde5a7839.html">shared</a></li><li class="navelem"><a href="dir_4e9db24138578ec165c1b5eec3f6ed9d.html">proj</a></li><li class="navelem"><a href="dir_e98a4446b1716ad806b184e639211b40.html">src</a></li><li class="navelem"><b>keyboard.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>

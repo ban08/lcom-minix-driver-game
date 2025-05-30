@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.14.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>LCOM_2LEIC16_2: kb_controller.h Source File</title>
+<title>LCOM_2LEIC16_2: C:/Users/anaso/Documents/LCOM/MINIX-LCOM/shared/shared/proj/src/kb_controller.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -91,32 +91,28 @@ $(function(){initNavTree('kb__controller_8h_source.html','',''); });
   <div class="headertitle"><div class="title">kb_controller.h</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="kb__controller_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef _LCOM_KB_CONTROLLER_H_</span></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef _LCOM_KB_CONTROLLER_H_</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define _LCOM_KB_CONTROLLER_H_</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;minix/sysutil.h&gt;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;lcom/lcf.h&gt;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="i8042_8h.html">i8042.h</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;i8042.h&quot;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>int (<a class="code hl_function" href="kb__controller_8c.html#a1a1b64092f8cf7a36f90e73e3970f6f5">readKBControllerstat</a>)(uint8_t* status);</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>int (readKBControllerstat)(uint8_t* status);</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>int (<a class="code hl_function" href="kb__controller_8c.html#a6c747e7b89843a810f737e18d5de76b7">readKBControlleroutput</a>)(uint8_t port, uint8_t *output, uint8_t mouse);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>int (readKBControlleroutput)(uint8_t port, uint8_t *output, uint8_t mouse);</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>int (<a class="code hl_function" href="kb__controller_8c.html#aaee251d0d8b774eb7f72e97513c2ff11">writeKBControllercommand</a>)(uint8_t port, uint8_t cmd_byte);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>int (writeKBControllercommand)(uint8_t port, uint8_t cmd_byte);</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#endif </span><span class="comment">// _LCOM_KB_CONTROLLER_H_</span></div>
-<div class="ttc" id="ai8042_8h_html"><div class="ttname"><a href="i8042_8h.html">i8042.h</a></div></div>
-<div class="ttc" id="akb__controller_8c_html_a1a1b64092f8cf7a36f90e73e3970f6f5"><div class="ttname"><a href="kb__controller_8c.html#a1a1b64092f8cf7a36f90e73e3970f6f5">readKBControllerstat</a></div><div class="ttdeci">int readKBControllerstat(uint8_t *status)</div><div class="ttdoc">Reads the keyboard controller status register.</div><div class="ttdef"><b>Definition</b> kb_controller.c:10</div></div>
-<div class="ttc" id="akb__controller_8c_html_a6c747e7b89843a810f737e18d5de76b7"><div class="ttname"><a href="kb__controller_8c.html#a6c747e7b89843a810f737e18d5de76b7">readKBControlleroutput</a></div><div class="ttdeci">int readKBControlleroutput(uint8_t port, uint8_t *output, uint8_t mouse)</div><div class="ttdoc">Reads a byte from the keyboard controller&#39;s output buffer.</div><div class="ttdef"><b>Definition</b> kb_controller.c:25</div></div>
-<div class="ttc" id="akb__controller_8c_html_aaee251d0d8b774eb7f72e97513c2ff11"><div class="ttname"><a href="kb__controller_8c.html#aaee251d0d8b774eb7f72e97513c2ff11">writeKBControllercommand</a></div><div class="ttdeci">int writeKBControllercommand(uint8_t port, uint8_t cmd_byte)</div><div class="ttdoc">Writes a command byte to the keyboard controller.</div><div class="ttdef"><b>Definition</b> kb_controller.c:72</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a href="kb__controller_8h.html">kb_controller.h</a></li>
+    <li class="navelem"><a href="dir_d522931ffa1371640980b621734a4381.html">Users</a></li><li class="navelem"><a href="dir_b968b17b1d7f8385fd0d627b8491076a.html">anaso</a></li><li class="navelem"><a href="dir_3820fe100da7ac4de38c69bffeca9410.html">Documents</a></li><li class="navelem"><a href="dir_fe36d2ffeec61690af9d54d674947fd3.html">LCOM</a></li><li class="navelem"><a href="dir_201845de07efaff868a958822640c2ff.html">MINIX-LCOM</a></li><li class="navelem"><a href="dir_b2c7451a30c03ab8c930f8fd2937147f.html">shared</a></li><li class="navelem"><a href="dir_313e6ebe6621253bffae72afde5a7839.html">shared</a></li><li class="navelem"><a href="dir_4e9db24138578ec165c1b5eec3f6ed9d.html">proj</a></li><li class="navelem"><a href="dir_e98a4446b1716ad806b184e639211b40.html">src</a></li><li class="navelem"><b>kb_controller.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>
