@@ -8,32 +8,35 @@
 
 /**
  * @brief Reads the status register of the keyboard controller.
- * 
- * @param status Pointer to a variable where the status will be stored.
+ *
+ * This function uses util_sys_inb to read the status register of the 8042 keyboard controller.
+ *
+ * @param status Pointer to a variable where the status byte will be stored.
  * @return 0 on success, non-zero on failure.
  */
 int (readKBControllerstat)(uint8_t* status);
 
 /**
- * @brief Reads output from the keyboard controller's output buffer.
- * 
- * This function waits until the output buffer is full and then reads the output,
- * checking for parity and timeout errors.
- * 
- * @param port I/O port to read from (e.g., KBC_OUT_BUF).
- * @param output Pointer to store the read byte.
- * @param mouse 1 if expecting mouse data, 0 for keyboard data.
- * @return 0 on success, non-zero on failure.
+ * @brief Reads the output from the keyboard or mouse controller.
+ *
+ * This function checks the output buffer of the keyboard controller and reads the data if available.
+ * It also performs error checking for parity, timeout, and data source (keyboard vs mouse).
+ *
+ * @param port The I/O port to read from.
+ * @param output Pointer to a variable where the output data will be stored.
+ * @param mouse Boolean indicating if the data is from the mouse (1) or keyboard (0).
+ * @return 0 on success, non-zero on error (e.g., timeout, parity error, or invalid source).
  */
 int (readKBControlleroutput)(uint8_t port, uint8_t *output, uint8_t mouse);
 
 /**
- * @brief Writes a command to the keyboard controller.
- * 
- * Waits until the input buffer is empty before sending the command.
- * 
- * @param port I/O port to write to (usually KBC_CMD_REG or KBC_IN_BUF).
- * @param cmd_byte Command byte to send.
+ * @brief Writes a command byte to the keyboard controller.
+ *
+ * This function waits for the input buffer to be clear before sending a command byte
+ * to the specified port.
+ *
+ * @param port The I/O port to write to.
+ * @param cmd_byte The command byte to send.
  * @return 0 on success, non-zero on failure.
  */
 int (writeKBControllercommand)(uint8_t port, uint8_t cmd_byte);

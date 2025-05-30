@@ -17,10 +17,10 @@ extern int h_id;
 /// @brief Keyboard hook ID
 extern int keyboard_hook_id;
 
-/// @brief X position of the player sprite
+/// @brief X position of the player
 int x_position = 40;
 
-/// @brief Y position of the player sprite
+/// @brief Y position of the player
 int y_position = 425;
 
 /// @brief Indicates whether the character is jumping

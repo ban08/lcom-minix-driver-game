@@ -11,8 +11,8 @@ uint8_t* frame_buffer; /**< Pointer to the video frame buffer */
 #include <lcom/utils.h>
 
 /**
- * @brief Sets the graphic mode using VBE.
- *
+ * @brief Sets the graphic mode using VBE BIOS interrupt (INT 0x10).
+ * 
  * @param s_mode The VBE mode to set.
  * @return 0 on success, 1 on failure.
  */
@@ -35,8 +35,8 @@ int (set_graphic_mode)(uint16_t s_mode) {
 }
 
 /**
- * @brief Sets the text mode (usually mode 0x03).
- *
+ * @brief Restores the text mode (80x25 color text).
+ * 
  * @return 0 on success, 1 on failure.
  */
 int (set_text_mode)() {
