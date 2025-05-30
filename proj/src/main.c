@@ -32,7 +32,7 @@ bool running = true;
 int last_scan_code;
 
 
-int menu = 0;
+int menu = 1;
 
 int first_screen_appearance = 1; //ajuda por causa do refresh do ecra
 

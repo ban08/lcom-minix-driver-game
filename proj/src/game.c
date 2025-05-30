@@ -31,6 +31,8 @@ int janela_min = 0;
 int janela_max = 800;
 extern int first_screen_appearance;
 
+int rotations = 0;
+
 /// @brief X-coordinates for enemy objects
 int enemy_x_coordinates[] = {700, 1200, 1400, 1900, 2900, 3100, 3500, 3700};
 
@@ -49,8 +51,6 @@ void game_start(){
             vg_draw_rectangle(0, 0, mode_info.XResolution, mode_info.YResolution, 0x00000000);
             draw_menu_screen();
             first_screen_appearance = 0;
-            printf("here");
-            printf("%d", menu);
 
         }
         
@@ -58,7 +58,6 @@ void game_start(){
 
 
     } else {
-        printf("there");
         
     if (first_screen_appearance == 1){
         vg_draw_rectangle(0, 0, mode_info.XResolution, mode_info.YResolution, 0x00000000);
@@ -72,44 +71,50 @@ void game_start(){
         has_started = 1;
         vg_draw_rectangle(0,0, mode_info.XResolution, 500, 0xFF7DC7C4);
         
-        //Sun
+        //Sol
         vg_draw_rectangle(620,70, 80, 80, 0xFFE0C25C);
         vg_draw_rectangle(630,80, 60, 60, 0xFFD1A513);
         
-        //Cloud
+        //Nuvem
         vg_draw_rectangle(80,80, 450, 140, 0XFF969696);
         vg_draw_rectangle(100,100, 220, 100, 0XFFBABABA);
         vg_draw_rectangle(350,110, 110, 90, 0XFFBABABA);
         
-        // Ground
+        // Chao
         vg_draw_rectangle(0,500, mode_info.XResolution, 25, 0xFFBD9773);
         vg_draw_rectangle(0,525, mode_info.XResolution, 25, 0xFF9E7E60);
         vg_draw_rectangle(0,550, mode_info.XResolution, 25, 0xFF735C46);
         vg_draw_rectangle(0,575, mode_info.XResolution, 25, 0xFF45372A);
 
+        //icons
+
+
+        //Letra P
+        vg_draw_rectangle(700, 250, 30, 30, 0xFF00FF00);
+        vg_draw_rectangle(705, 255, 5, 20, 0xFF000000);
+        vg_draw_rectangle(710, 255, 10, 5, 0xFF000000);
+        vg_draw_rectangle(710, 265, 10, 5, 0xFF000000);
+        vg_draw_rectangle(720, 260, 5, 5, 0xFF000000);
+
+
     }
     
     game_jump();
 
-    // Clear old player pixels
     for (int y = 325; y < 500; y++) {
         for (int x = 40; x < 70; x++) {
             vg_draw_pixel(x, y, 0xFF7DC7C4);
         }
     }
 
-    // Clear bottom line
     for (int y = 488; y < 500; y++) {
         for (int x = 0; x < mode_info.XResolution; x++) {
             vg_draw_pixel(x, y, 0xFF7DC7C4);
         }
     }
 
-    // Draw player character
     vg_draw_rectangle(x_position, y_position, 30, 75, 0XFF105902);
-    //vg_draw_hline(0, 500, 800, 0xFFFF0000);
 
-    // Draw obstacles
     draw_enemies();
 
     janela_min = janela_min + 5;
@@ -118,6 +123,7 @@ void game_start(){
     if (janela_min > 3700){
     janela_min = -200;
     janela_max = 600;
+    rotations = rotations + 1;
 }
     }
     usleep(16000); // aprox 60 FPS --> parece me ser o sweet spot. + frames, + tearing
@@ -136,8 +142,14 @@ void draw_enemies(){
         if ((enemy_x_coordinates[i] > janela_min) && (enemy_x_coordinates[i] < janela_max)){
             vg_draw_rectangle(enemy_x_coordinates[i] - janela_min, 488, 4, 12, 0xFFE37610);
             if ((enemy_x_coordinates[i] - janela_min > 40) && (enemy_x_coordinates[i] - janela_min < 70) && (y_position > 425 - 12)){
-                running = false; //se colidir com os espinhos, sai
-                printf("You scored %d points!", enemy_x_coordinates[i]);
+                rotations = 0;
+                janela_max = 800;
+                janela_min = 0;
+                menu = 1;
+                first_screen_appearance = 1;
+                has_started = 1;
+
+                printf("You scored %d points!", enemy_x_coordinates[i] + rotations * 3700);
             }
         }
     }
@@ -145,54 +157,56 @@ void draw_enemies(){
 }
 
 void draw_menu_screen() {
-    //vg_draw_rectangle(0, 0, mode_info.XResolution, mode_info.YResolution, 0x00000000);
 
-    // Draw a basic "MENU" blocky letters using rectangles
-    // Letter M
+    // Letra M
     vg_draw_rectangle(490, 100, 10, 10, 0xFFFFFF00);
     vg_draw_rectangle(480, 100, 10, 50, 0xFFFFFF00);
     vg_draw_rectangle(500, 100, 10, 50, 0xFFFFFF00);
     vg_draw_rectangle(510, 100, 10, 10, 0xFFFFFF00);
     vg_draw_rectangle(520, 100, 10, 50, 0xFFFFFF00);
     
-    // Letter E
+    // Letra E
     vg_draw_rectangle(540, 100, 10, 50, 0xFFFFFF00);
     vg_draw_rectangle(550, 100, 20, 10, 0xFFFFFF00);
     vg_draw_rectangle(550, 125, 15, 10, 0xFFFFFF00);
     vg_draw_rectangle(550, 140, 20, 10, 0xFFFFFF00);
     
-    // Letter N
+    // Letra N
     vg_draw_rectangle(580, 100, 10, 50, 0xFFFFFF00);
     vg_draw_rectangle(590, 110, 10, 10, 0xFFFFFF00);
     vg_draw_rectangle(600, 120, 10, 10, 0xFFFFFF00);
     vg_draw_rectangle(610, 130, 10, 10, 0xFFFFFF00);
     vg_draw_rectangle(620, 100, 10, 50, 0xFFFFFF00);
     
-    // Letter U
+    // Letra U
     vg_draw_rectangle(640, 100, 10, 40, 0xFFFFFF00);
     vg_draw_rectangle(670, 100, 10, 40, 0xFFFFFF00);
     vg_draw_rectangle(650, 140, 20, 10, 0xFFFFFF00);
     
 
-//DINO text
 
+    //texto a dizer DINO
     int start_x = 100;
+
     int start_y = 100;
+
     int letter_w = 20;
+
     int letter_h = 50;
+
     int gap = 15;
 
-    // Letter D
-    vg_draw_rectangle(start_x, start_y, 5, letter_h, 0xFFFFFF00); // left
-    vg_draw_rectangle(start_x + 5, start_y, 10, 5, 0xFFFFFF00);   // top
-    vg_draw_rectangle(start_x + 15, start_y + 5, 5, 40, 0xFFFFFF00); // curve side
-    vg_draw_rectangle(start_x + 5, start_y + 45, 10, 5, 0xFFFFFF00); // bottom
+    // Letra D
+    vg_draw_rectangle(start_x, start_y, 5, letter_h, 0xFFFFFF00);
+    vg_draw_rectangle(start_x + 5, start_y, 10, 5, 0xFFFFFF00);
+    vg_draw_rectangle(start_x + 15, start_y + 5, 5, 40, 0xFFFFFF00);
+    vg_draw_rectangle(start_x + 5, start_y + 45, 10, 5, 0xFFFFFF00);
 
-    // Letter I
+    // Letra I
     start_x += letter_w + gap;
     vg_draw_rectangle(start_x + 5, start_y, 10, letter_h, 0xFFFFFF00);
 
-    // Letter N
+    // Letra N
     start_x += letter_w + gap;
     vg_draw_rectangle(start_x, start_y, 5, letter_h, 0xFFFFFF00);
     vg_draw_rectangle(start_x + 5, start_y + 10, 5, 5, 0xFFFFFF00);
@@ -200,12 +214,12 @@ void draw_menu_screen() {
     vg_draw_rectangle(start_x + 15, start_y + 30, 5, 5, 0xFFFFFF00);
     vg_draw_rectangle(start_x + 20, start_y, 5, letter_h, 0xFFFFFF00);
 
-    // Letter O
+    // Letra O
     start_x += letter_w + gap;
-    vg_draw_rectangle(start_x, start_y, 5, letter_h, 0xFFFFFF00);         // left
-    vg_draw_rectangle(start_x + 20, start_y, 5, letter_h, 0xFFFFFF00);    // right
-    vg_draw_rectangle(start_x + 5, start_y, 15, 5, 0xFFFFFF00);           // top
-    vg_draw_rectangle(start_x + 5, start_y + 45, 15, 5, 0xFFFFFF00);      // bottom
+    vg_draw_rectangle(start_x, start_y, 5, letter_h, 0xFFFFFF00);
+    vg_draw_rectangle(start_x + 20, start_y, 5, letter_h, 0xFFFFFF00);
+    vg_draw_rectangle(start_x + 5, start_y, 15, 5, 0xFFFFFF00); 
+    vg_draw_rectangle(start_x + 5, start_y + 45, 15, 5, 0xFFFFFF00); 
 
 
 
@@ -215,44 +229,36 @@ void draw_menu_screen() {
     int square_y = 400;
     int square_size = 30;
 
-    // Draw green square
+    // quadrado verde
     vg_draw_rectangle(square_x, square_y, square_size, square_size, 0xFF00FF00);
 
-// Draw "S" inside the square (block style)
-// Top bar
-vg_draw_rectangle(square_x + 5, square_y + 5, 20, 5, 0xFF000000);
-// Upper vertical (left)
-vg_draw_rectangle(square_x + 5, square_y + 5, 5, 10, 0xFF000000);
-// Middle bar
-vg_draw_rectangle(square_x + 5, square_y + 15, 20, 5, 0xFF000000);
-// Lower vertical (right)
-vg_draw_rectangle(square_x + 20, square_y + 15, 5, 10, 0xFF000000);
-// Bottom bar
-vg_draw_rectangle(square_x + 5, square_y + 25, 20, 5, 0xFF000000);
+    //S dentro do quadrado
+    vg_draw_rectangle(square_x + 5, square_y + 5, 20, 5, 0xFF000000);
+    vg_draw_rectangle(square_x + 5, square_y + 5, 5, 10, 0xFF000000);
+    vg_draw_rectangle(square_x + 5, square_y + 15, 20, 5, 0xFF000000);
+    vg_draw_rectangle(square_x + 20, square_y + 15, 5, 10, 0xFF000000);
+    vg_draw_rectangle(square_x + 5, square_y + 25, 20, 5, 0xFF000000);
 
-    // Draw "Play" text to the right (small block letters)
+
+
     int text_x = square_x + square_size + 10;
     int text_y = square_y + 5;
-
-    // Letter P
     vg_draw_rectangle(text_x, text_y, 2, 10, 0xFFFFFFFF);
     vg_draw_rectangle(text_x + 2, text_y, 4, 2, 0xFFFFFFFF);
     vg_draw_rectangle(text_x + 2, text_y + 4, 4, 2, 0xFFFFFFFF);
     vg_draw_rectangle(text_x + 6, text_y + 2, 2, 2, 0xFFFFFFFF);
-
-    // Letter L
     text_x += 12;
     vg_draw_rectangle(text_x, text_y, 2, 10, 0xFFFFFFFF);
     vg_draw_rectangle(text_x, text_y + 8, 6, 2, 0xFFFFFFFF);
 
-    // Letter A
+    // Letra A
     text_x += 10;
     vg_draw_rectangle(text_x, text_y + 2, 2, 8, 0xFFFFFFFF);
     vg_draw_rectangle(text_x + 6, text_y + 2, 2, 8, 0xFFFFFFFF);
     vg_draw_rectangle(text_x + 2, text_y, 4, 2, 0xFFFFFFFF);
     vg_draw_rectangle(text_x + 2, text_y + 4, 4, 2, 0xFFFFFFFF);
 
-    // Letter Y
+    // Letra Y
     text_x += 12;
     vg_draw_rectangle(text_x, text_y, 2, 4, 0xFFFFFFFF);
     vg_draw_rectangle(text_x + 6, text_y, 2, 4, 0xFFFFFFFF);
@@ -267,10 +273,9 @@ vg_draw_rectangle(square_x + 5, square_y + 25, 20, 5, 0xFF000000);
     int square_width = 40;
     int square_height = 20;
 
-    // Draw red rectangle
+    // retangulo vermelho (nao cabe num quadrado, a menos q fosse demasiado alto)
     vg_draw_rectangle(square_x, square_y, square_width, square_height, 0xFFFF0000);
 
-    // Draw "Esc" inside (blocky approximation)
     int esc_x = square_x + 4;
     int esc_y = square_y + 4;
 
@@ -294,7 +299,7 @@ vg_draw_rectangle(square_x + 5, square_y + 25, 20, 5, 0xFF000000);
     vg_draw_rectangle(esc_x, esc_y + 2, 2, 6, 0xFF000000);
     vg_draw_rectangle(esc_x + 2, esc_y + 8, 6, 2, 0xFF000000);
 
-    // Draw "Exit" to the right
+    // exit
     text_x = square_x + square_width + 10;
     text_y = square_y + 4;
 
