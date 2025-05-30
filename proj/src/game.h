@@ -71,4 +71,7 @@ int draw_dino(xpm_map_t xpm, uint16_t x, uint16_t y);
 void draw_enemies();
 
 
+
+void draw_menu_screen();
+
 #endif

@@ -138,6 +138,16 @@ int (vg_draw_hline)(uint16_t x, uint16_t y, uint16_t len, uint32_t color) {
   return 0;
 }
 
+
+int (vg_draw_vline)(uint16_t x, uint16_t y, uint16_t len, uint32_t color) {
+  for (unsigned iter = 0 ; iter < len ; ++iter) {
+    if (vg_draw_pixel(x, y + iter, color) != 0) {
+        return 1;
+    }
+  }
+  return 0;
+}
+
 /**
  * @brief Draws a rectangle at (x, y) with specified width, height, and color.
  *

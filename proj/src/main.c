@@ -29,6 +29,13 @@ int is_going_up = 0;
 /// @brief Flag to control main loop execution
 bool running = true;
 
+int last_scan_code;
+
+
+int menu = 0;
+
+int first_screen_appearance = 1; //ajuda por causa do refresh do ecra
+
 /// @brief Current movement state of the player
 movement_states movement_state = BASE;
 
@@ -98,10 +105,19 @@ int (proj_main_loop)(int argc, char *argv[]) {
                         // Space key (0x39) initiates jump
                         if (scan_code == 0x39 && y_position == 425)
                             is_going_up = 1;
+                        if (scan_code == 0x1F && menu==1 && last_scan_code != 0x19){
+                            menu = 0; // 0x19 é o scan_code da tecla P e 0x1F é o scan code da tecla S
+                            first_screen_appearance = 1;
+                        }
+                        if (scan_code==0x19 && menu == 0 && last_scan_code != 0x19){
+                            menu = 1;
+                            first_screen_appearance = 1;
+                        }
                     }
                     break;
             }
         }
+        last_scan_code = scan_code;
     }
     timer_unsubscribe_int();
     keyboard_unsubscribe_interruptions();
