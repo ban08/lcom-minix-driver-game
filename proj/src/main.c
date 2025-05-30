@@ -36,8 +36,6 @@ int menu = 1;
 
 int first_screen_appearance = 1; //ajuda por causa do refresh do ecra
 
-/// @brief Current movement state of the player
-movement_states movement_state = BASE;
 
 /**
  * @brief Main entry point of the LCF application.

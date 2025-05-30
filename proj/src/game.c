@@ -1,6 +1,5 @@
 //#include "main.c"
 #include "game.h"
-#include "sprite.h"
 #include "video_card.h"
 #include "utils.c"
 
@@ -17,15 +16,13 @@ extern bool running;
 extern int is_going_up;
 
 /// @brief Represents the current movement state.
-extern movement_states movement_state;
 
 extern int menu;
 
 /// @brief Flag indicating whether the game has started.
 int has_started = 0;
 
-/// @brief Sprite representing the start state.
-Sprite* start_sprite = NULL;
+
 
 int janela_min = 0;
 int janela_max = 800;
@@ -328,35 +325,6 @@ void draw_menu_screen() {
 
 }
 
-
-/**
- * @brief Calculates which pixels need to be deleted/redrawn between frames.
- *
- * @param new_x New X coordinate.
- * @param old_x Old X coordinate.
- * @param new_y New Y coordinate.
- * @param old_y Old Y coordinate.
- * @param type Object type: 0 for player, 1 for enemy.
- * @return Structure with coordinates to delete.
- */
-//afinal não é preciso. basat estimar os pontos em que a imagem pode mudar, nao precisamos de os calcular
-to_delete calculate_to_delete (int new_x, int old_x, int new_y, int old_y, int type){
-    //type 0 -> dino
-    //type 1 -> cacto
-    //largura dino -> 30, altura -> 75
-    to_delete output;
-
-    if (type == 1){
-        output.x_1 = 40;
-        output.x_2 = 70;
-
-        if (new_y < old_y){
-            output.y_1 = old_y;
-            output.y_2 = new_y;
-        }
-    }
-    return output;
-}
 
 /**
  * @brief Handles player vertical movement (jumping and falling).
