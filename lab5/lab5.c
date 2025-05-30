@@ -65,10 +65,18 @@ int(video_test_init)(uint16_t mode, uint8_t delay) {
 int(video_test_rectangle)(uint16_t mode, uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t color) {
 
   uint32_t new_color;
+  int bpp = mode_info.BitsPerPixel;
+  
+  if (bpp == 32) {
+    *new_color = color;
+  } else {
+    *new_color = color & ((1 << bpp) - 1);
+  }
+  return 0;
+
 
   if ((set_graphic_mode(mode) == 0)&&
   (set_frame_buffer(mode) == 0)&&
-  (normalize_color(color, &new_color) == 0)&&
   (vg_draw_rectangle(x, y, width, height, new_color) == 0)&&
   (was_ESC_pressed() == 0)&&
   (vg_exit() == 0)) 

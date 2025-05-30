@@ -2,18 +2,21 @@
 
 
 
-int (readKBControllerstat)(uint8_t* status) {
+int (readKBControllerstat)(uint8_t* status) 
+{
 
     return util_sys_inb(KBC_STATUS_REGISTER, status);
 
 }
 
-int readKBControlleroutput(uint8_t port, uint8_t *output, uint8_t mouse) {
+int readKBControlleroutput(uint8_t port, uint8_t *output, uint8_t mouse) 
+{
 
     uint8_t status;
 
+    uint8_t attempts = 10;
     
-    for (int i = 0; i < 10; i++){
+    for (int i = 0; i < attempts; i++){
 
         if (readKBControllerstat(&status) != 0) {
             printf("Error: Status!\n");
@@ -51,7 +54,8 @@ int readKBControlleroutput(uint8_t port, uint8_t *output, uint8_t mouse) {
     return 1;
 }
 
-int (writeKBControllercommand)(uint8_t port, uint8_t cmd_byte) {
+int (writeKBControllercommand)(uint8_t port, uint8_t cmd_byte) 
+{
 
     uint8_t status;
 

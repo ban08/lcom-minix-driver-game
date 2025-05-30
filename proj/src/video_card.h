@@ -85,14 +85,7 @@ int (vg_draw_vline)(uint16_t x, uint16_t y, uint16_t len, uint32_t color);
  */
 int print_xpm(xpm_map_t xpm, uint16_t x, uint16_t y);
 
-/**
- * @brief Normalizes a color value to the current video mode's format.
- * 
- * @param color The original color
- * @param new_color Pointer to store normalized color
- * @return 0 on success, non-zero otherwise
- */
-int normalize_color(uint32_t color, uint32_t *new_color);
+
 
 /**
  * @brief Computes the direct color value from red, green, blue components.

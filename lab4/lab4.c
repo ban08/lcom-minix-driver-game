@@ -10,9 +10,13 @@
 #include "s_machine.h"
 #include "timer.c"
 #include "kb_controller.h"
+
 extern struct packet m_pckt;
+
 extern uint8_t byte_idx;
+
 extern uint32_t cnt;
+
 extern Possible_States curr_state;
 
 int main(int argc, char *argv[]) {

@@ -5,11 +5,13 @@
 //#include "kb_controller.h"
 
 uint8_t scan_code = 0;
+
 uint32_t counter_kb_controller = 0;
 
 int keyboard_hook_id = 1;
 
-int (keyboard_subscribe_interruptions)(uint8_t *bit_no) {
+int (keyboard_subscribe_interruptions)(uint8_t *bit_no) 
+{
     if (bit_no == NULL)
     {
         return 1;
@@ -20,11 +22,13 @@ int (keyboard_subscribe_interruptions)(uint8_t *bit_no) {
     return sys_irqsetpolicy(KEYBOARD_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &keyboard_hook_id);
 }
 
-int (keyboard_unsubscribe_interruptions)() {
+int (keyboard_unsubscribe_interruptions)() 
+{
     return sys_irqrmpolicy(&keyboard_hook_id);
 }
 
-void (kbc_ih)() {
+void (kbc_ih)() 
+{
 
     if (readKBControlleroutput(KBC_OUT_COMMAND, &scan_code, 0) != 0)
     {
@@ -33,7 +37,8 @@ void (kbc_ih)() {
     }
 }
 
-int (keyboard_restore)() {
+int (keyboard_restore)() 
+{
     uint8_t cmd_byte;
 
     if ((writeKBControllercommand(KBC_IN_COMMAND, KBC_READ_COMMAND) != 0) || (readKBControlleroutput(KBC_OUT_COMMAND, &cmd_byte, 0) != 0))

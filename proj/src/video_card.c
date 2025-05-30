@@ -64,30 +64,41 @@ int (set_text_mode)() {
  * @return 0 on success, 1 on failure.
  */
 int (set_frame_buffer)(uint16_t mode){
+
+
     size_t info_size = sizeof(mode_info);
+
     memset(&mode_info, 0, info_size);
 
     if (vbe_get_mode_info(mode, &mode_info) != 0) {
-        return 1;
+
+      return 1;
     }
 
     uint32_t vertical_res = mode_info.YResolution;
+
     uint32_t horizontal_res = mode_info.XResolution;
+
     uint32_t bpp  = (mode_info.BitsPerPixel + 7) / 8;
+
     uint32_t f_size = horizontal_res * vertical_res * bpp;
 
     struct minix_mem_range mem_range;
+
     mem_range.mr_base = mode_info.PhysBasePtr;
+
     mem_range.mr_limit = mem_range.mr_base + f_size;
 
     if (sys_privctl(SELF, SYS_PRIV_ADD_MEM, &mem_range) != 0) {
-        printf("Error during memory mapping!\n");
-        return 1;
+      printf("Error during memory mapping!\n");
+      return 1;
     }
 
     frame_buffer = vm_map_phys(SELF, (void*) mem_range.mr_base, f_size);
+
     if (frame_buffer != NULL) {
-        return 0; // success
+
+      return 0;
     }
 
     printf("Error during memory mapping!\n");
@@ -132,7 +143,7 @@ int (vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color) {
 int (vg_draw_hline)(uint16_t x, uint16_t y, uint16_t len, uint32_t color) {
   for (unsigned iter = 0 ; iter < len ; ++iter) {
     if (vg_draw_pixel(x + iter, y, color) != 0) {
-        return 1;
+      return 1;
     }
   }
   return 0;
@@ -142,7 +153,7 @@ int (vg_draw_hline)(uint16_t x, uint16_t y, uint16_t len, uint32_t color) {
 int (vg_draw_vline)(uint16_t x, uint16_t y, uint16_t len, uint32_t color) {
   for (unsigned iter = 0 ; iter < len ; ++iter) {
     if (vg_draw_pixel(x, y + iter, color) != 0) {
-        return 1;
+      return 1;
     }
   }
   return 0;
@@ -194,23 +205,7 @@ int (print_xpm)(xpm_map_t xpm, uint16_t x, uint16_t y) {
   return 0;
 }
 
-/**
- * @brief Normalizes the color to the correct bits per pixel.
- *
- * @param color Original color value.
- * @param new_color Pointer to store the normalized color.
- * @return 0 on success.
- */
-int normalize_color(uint32_t color, uint32_t *new_color) {
-  int bpp = mode_info.BitsPerPixel;
-  
-  if (bpp == 32) {
-    *new_color = color;
-  } else {
-    *new_color = color & ((1 << bpp) - 1);
-  }
-  return 0;
-}
+
 
 /**
  * @brief Constructs a direct color from red, green and blue components.
@@ -238,7 +233,9 @@ uint32_t get_direct_color(uint32_t red, uint32_t green, uint32_t blue) {
  */
 uint32_t get_indexed_color(uint16_t col, uint16_t row, uint8_t step, uint32_t first, uint8_t n) {
   uint32_t index = row * n + col;
+
   uint32_t max_color = 1 << mode_info.BitsPerPixel;
+
   return (first + index * step) % max_color;
 }
 
@@ -252,7 +249,9 @@ uint32_t get_indexed_color(uint16_t col, uint16_t row, uint8_t step, uint32_t fi
  */
 uint32_t get_red_component(unsigned col_index, uint8_t step, uint32_t first_color) {
   uint32_t base_red = extract_red(first_color);
+
   uint32_t max_red = 1 << mode_info.RedMaskSize;
+
   return (base_red + col_index * step) % max_red;
 }
 
@@ -265,9 +264,11 @@ uint32_t get_red_component(unsigned col_index, uint8_t step, uint32_t first_colo
  * @return Green component value.
  */
 uint32_t get_green_component(unsigned row_index, uint8_t step, uint32_t first_color) {
-    uint32_t base_green = extract_green(first_color);
-    uint32_t max_green = 1 << mode_info.GreenMaskSize;
-    return (base_green + row_index * step) % max_green;
+  uint32_t base_green = extract_green(first_color);
+
+  uint32_t max_green = 1 << mode_info.GreenMaskSize;
+
+  return (base_green + row_index * step) % max_green;
 }
 
 /**
@@ -280,9 +281,9 @@ uint32_t get_green_component(unsigned row_index, uint8_t step, uint32_t first_co
  * @return Blue component value.
  */
 uint32_t get_blue_component(unsigned col_index, unsigned row_index, uint8_t step, uint32_t first_color) {
-    uint32_t base_blue = extract_blue(first_color);
-    uint32_t max_blue = 1 << mode_info.BlueMaskSize;
-    return (base_blue + (row_index + col_index) * step) % max_blue;
+  uint32_t base_blue = extract_blue(first_color);
+  uint32_t max_blue = 1 << mode_info.BlueMaskSize;
+  return (base_blue + (row_index + col_index) * step) % max_blue;
 }
 
 /**
