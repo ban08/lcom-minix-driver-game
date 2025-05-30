@@ -1,12 +1,16 @@
-//#include "main.c"
+/**
+ * @file game.c
+ * @brief Contains core game logic, including game loop, rendering, enemy handling, and menu interface.
+ */
+
 #include "game.h"
 #include "video_card.h"
 #include "utils.c"
 
-/// @brief Global X coordinate of the player sprite.
+/// @brief Global X coordinate of the player.
 extern int x_position;
 
-/// @brief Global Y coordinate of the player sprite.
+/// @brief Global Y coordinate of the player.
 extern int y_position;
 
 /// @brief Game running flag.
@@ -37,8 +41,13 @@ int enemy_x_coordinates[] = {700, 1200, 1400, 1900, 2900, 3100, 3500, 3700};
 /**
  * @brief Starts and runs one frame of the game loop.
  *
- * Initializes the background, draws the player and enemies,
- * and handles vertical movement and collision.
+ * This function handles:
+ * - Drawing menu or game screen based on current state.
+ * - Initializing the environment and background.
+ * - Managing vertical movement (jumping/falling).
+ * - Drawing the player and enemies.
+ * - Scrolling window logic.
+ * - Collision detection.
  */
 void game_start(){
 
@@ -50,9 +59,6 @@ void game_start(){
             first_screen_appearance = 0;
 
         }
-        
-        
-
 
     } else {
         
@@ -130,9 +136,10 @@ void game_start(){
 }
 
 /**
- * @brief Draws all enemies currently within the visible window.
+ * @brief Draws all visible enemies within the current scrolling window.
  *
- * Also handles collision detection with the player.
+ * Also handles collision detection between enemies and the player.
+ * If a collision is detected, the game returns to the menu screen.
  */
 void draw_enemies(){
     for (unsigned int i = 0; i < 8; i++){
@@ -153,6 +160,11 @@ void draw_enemies(){
 
 }
 
+/**
+ * @brief Draws the menu screen, including "MENU", "DINO" title, and options for play and exit.
+ *
+ * This function uses pixel/rectangle primitives to render letters and buttons manually.
+ */
 void draw_menu_screen() {
 
     // Letra M
@@ -327,7 +339,11 @@ void draw_menu_screen() {
 
 
 /**
- * @brief Handles player vertical movement (jumping and falling).
+ * @brief Handles player vertical movement during jumping or falling.
+ *
+ * This function modifies the `y_position` based on whether the player is going up or falling down.
+ * - Jumping stops at a maximum height.
+ * - Falling stops when reaching the ground level.
  */
 void game_jump(){
     if (is_going_up && y_position > 325){
